@@ -16,8 +16,8 @@
                 data: {},
                 success: function (response) {
                     if (response["isSuccess"] == "success") {
-                        alert(response["test"]);
                         console.log("get 성공");
+                        $('#a').append(response["test"])
                     }
                 }
             })
@@ -28,5 +28,6 @@
 <body>
 hello world<br>
 server for team1
+<div id="a"></div>
 </body>
 </html>
