@@ -23,11 +23,31 @@
             })
         }
 
+        function post() {
+            const name = $('#name').val();
+            const phone = $('#phone').val();
+            $.ajax({
+                type: "POST",
+                url: "/eroomy",
+                data: {"name": name, "phone": phone},
+                success: function (response) {
+                    if (response["isSuccess"] == "success") {
+                        console.log("eroomy 성공");
+                    }
+                }
+            })
+        }
+
+
     </script>
 </head>
 <body>
 hello world<br>
 server for team1
-<div id="a"></div>
+<div id="a">
+    <input type="text" id="name"><br>
+    <input type="number" id="phone">
+    <button onclick="post()">전송</button>
+</div>
 </body>
 </html>

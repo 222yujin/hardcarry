@@ -1,8 +1,14 @@
 from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS
+from pymongo import MongoClient
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
+
+
+client = MongoClient('mongodb://test:test@localhost', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
+db = client.catchup
+
 
 @app.route('/')
 def home():
@@ -12,19 +18,23 @@ def home():
 # get method
 @app.route('/test', methods=['GET'])
 def test():
-
     return jsonify({"isSuccess": "success", "test": "get test"})
 
 
 # post method
-@app.route('/test', methods=['POST'])
+@app.route('/eroomy', methods=['POST'])
 def post():
     # request 받아서 내부처리
     # 결과 response로 반환
-    email_receive = request.form['email']
-    nickname_receive = request.form['nickname']
-    return jsonify({"isSuccess": True, "test": "post test"})
+    name_receive = request.form['name']
+    phone_receive = request.form['phone']
 
+    db.eroomy.insert_one({"name": name_receive, "phone": phone_receive})
+
+    return jsonify({"isSuccess": True, "test": "데이터 저장 성공"})
+
+
+#################################################################
 
 # get method
 @app.route('/app/auth', methods=['GET'])
