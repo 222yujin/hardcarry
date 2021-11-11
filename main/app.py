@@ -31,7 +31,7 @@ def post():
 
     db.eroomy.insert_one({"name": name_receive, "phone": phone_receive})
 
-    return jsonify({"isSuccess": True, "test": "데이터 저장 성공"})
+    return jsonify({"isSuccess": "success", "test": "데이터 저장 성공"})
 
 
 #################################################################
