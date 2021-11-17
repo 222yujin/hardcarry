@@ -18,7 +18,7 @@ def home():
 # test 점수 계산해서 결과 주기
 @app.route('/result', methods=['POST'])
 def test_result():
-    result_score = request.form.get('result_array')
+    result_score = request.json['result_array']
     print(result_score)
     result_score = result_score.split('_')
 
