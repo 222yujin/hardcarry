@@ -5,8 +5,19 @@
 
 
 def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    result_score = [0,0,0, 0,0,0, 0,1,0, 0,0,0]
+    result_type = 0
+
+    if result_score[3] == 1 or (result_score[4] == 1 and result_score[5] == 1):
+        result_type = 2
+        if result_score[6] == 1 or (result_score[7] == 1 and result_score[8] == 1):
+            result_type = 3
+            if result_score[9] == 1 or (result_score[10] == 1 and result_score[11] == 1):
+                result_type = 4
+    else:
+        result_type = 1
+
+    print(result_type)
 
 
 # Press the green button in the gutter to run the script.

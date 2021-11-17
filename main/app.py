@@ -1,12 +1,12 @@
 from flask import Flask, render_template, jsonify, request
+import json
 from flask_cors import CORS
 from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
 
-
-client = MongoClient('mongodb://test:test@localhost', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
+client = MongoClient('mongodb://test:test@13.125.132.62', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
 db = client.catchup
 
 
@@ -15,50 +15,29 @@ def home():
     return render_template('index.html')
 
 
-# get method
-@app.route('/test', methods=['GET'])
-def test():
-    return jsonify({"isSuccess": "success", "test": "get test"})
+# test 점수 계산해서 결과 주기
+@app.route('/result', methods=['POST'])
+def test_result():
+    result_score = request.form.get('result_array')
+    result_score = json.loads(result_score)
 
+    result_type = 0
 
-# post method
-@app.route('/eroomy', methods=['POST'])
-def post():
-    # request 받아서 내부처리
-    # 결과 response로 반환
-    name_receive = request.form['name']
-    phone_receive = request.form['phone']
+    if result_score[3] == 1 or (result_score[4] == 1 and result_score[5] == 1):
+        result_type = 2
+        if result_score[6] == 1 or (result_score[7] == 1 and result_score[8] == 1):
+            result_type = 3
+            if result_score[9] == 1 or (result_score[10] == 1 and result_score[11] == 1):
+                result_type = 4
+    else:
+        result_type = 1
 
-    db.eroomy.insert_one({"name": name_receive, "phone": phone_receive})
-
-    return jsonify({"isSuccess": "success", "test": "데이터 저장 성공"})
-
-
-#################################################################
-
-# get method
-@app.route('/app/auth', methods=['GET'])
-def get_auth():
-    # 내부 동작
-
-    return jsonify({"isSuccess": True, "code": 1000, "message": "요청에 성공하였습니다."
-                       , "result": {"accountId": 1, "nickname": "test", "participationCount": 1, "profileImage": None,
-                                    "address": "서울특별시 사당로 20나길"}})
-
-
-# post method
-@app.route('/app/sign-up', methods=['POST'])
-def sign_up():
-    email_receive = request.form['email']
-    nickname_receive = request.form['nickname']
-    password_receive = request.form['password']
-    address_receive = request.form['address']
-
-    # request 받아서 내부처리
-    # 결과 response로 반환
-
-    return jsonify({"isSuccess": True, "code": 1000, "message": "요청에 성공하였습니다.",
-                    "result": {"accountId": 2, "nickname": "vividswan", "address": "서울특별시 사당로 20나길 19 201호"}})
+    category = db.category.find_one({"type": result_type}, {"_id": False})
+    category["programs"] = []
+    for i in category["id"]:
+        category["programs"].append(db.program.find_one({"id": i}, {"_id": False}))
+    print(category)
+    return jsonify({"isSuccess": "success", "data": category})
 
 
 if __name__ == '__main__':
