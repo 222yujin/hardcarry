@@ -20,7 +20,7 @@
             $.ajax({
                 type: "POST",
                 url: "/result",
-                data: {"result_array":JSON.stringify(result_array)},
+                data: {"result_array":result_array},
                 success: function (response) {
                     if (response["isSuccess"] == "success") {
                             console.log(response)
@@ -39,40 +39,40 @@ aws test
 <div id="a">
 
         <p>1번 질문</p>
-        <label><input type="radio" name="q1" value="1"> 예</label>
+        <label><input type="radio" name="q1" value="1" checked> 예</label>
         <label><input type="radio" name="q1" value="0"> 아니오</label>
         <p>2번 질문</p>
-        <label><input type="radio" name="q2" value="1"> 예</label>
+        <label><input type="radio" name="q2" value="1" checked> 예</label>
         <label><input type="radio" name="q2" value="0"> 아니오</label>
         <p>3번 질문</p>
-        <label><input type="radio" name="q3" value="1"> 예</label>
+        <label><input type="radio" name="q3" value="1" checked> 예</label>
         <label><input type="radio" name="q3" value="0"> 아니오</label>
         <p>4번 질문</p>
-        <label><input type="radio" name="q4" value="1"> 예</label>
+        <label><input type="radio" name="q4" value="1" checked> 예</label>
         <label><input type="radio" name="q4" value="0"> 아니오</label>
         <p>5번 질문</p>
-        <label><input type="radio" name="q5" value="1"> 예</label>
+        <label><input type="radio" name="q5" value="1" checked> 예</label>
         <label><input type="radio" name="q5" value="0"> 아니오</label>
         <p>6번 질문</p>
-        <label><input type="radio" name="q6" value="1"> 예</label>
+        <label><input type="radio" name="q6" value="1" checked> 예</label>
         <label><input type="radio" name="q6" value="0"> 아니오</label>
         <p>7번 질문</p>
-        <label><input type="radio" name="q7" value="1"> 예</label>
+        <label><input type="radio" name="q7" value="1" checked> 예</label>
         <label><input type="radio" name="q7" value="0"> 아니오</label>
         <p>8번 질문</p>
-        <label><input type="radio" name="q8" value="1"> 예</label>
+        <label><input type="radio" name="q8" value="1" checked> 예</label>
         <label><input type="radio" name="q8" value="0"> 아니오</label>
         <p>9번 질문</p>
-        <label><input type="radio" name="q9" value="1"> 예</label>
+        <label><input type="radio" name="q9" value="1" checked> 예</label>
         <label><input type="radio" name="q9" value="0"> 아니오</label>
         <p>10번 질문</p>
-        <label><input type="radio" name="q10" value="1"> 예</label>
+        <label><input type="radio" name="q10" value="1" checked> 예</label>
         <label><input type="radio" name="q10" value="0"> 아니오</label>
         <p>11번 질문</p>
-        <label><input type="radio" name="q11" value="1"> 예</label>
+        <label><input type="radio" name="q11" value="1" checked> 예</label>
         <label><input type="radio" name="q11" value="0"> 아니오</label>
         <p>12번 질문</p>
-        <label><input type="radio" name="q12" value="1"> 예</label>
+        <label><input type="radio" name="q12" value="1" checked> 예</label>
         <label><input type="radio" name="q12" value="0"> 아니오</label>
         <p><button onclick="post()">제출</button><input type="reset" value="Reset"></p>
 

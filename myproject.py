@@ -18,8 +18,8 @@ def home():
 # test 점수 계산해서 결과 주기
 @app.route('/result', methods=['POST'])
 def test_result():
-    result_score = request.form.get('result_array')
-    result_score = json.loads(result_score)
+    result_score = request.form.getlist('result_array[]')
+    #result_score = json.loads(result_score)
 
     result_type = 0
 
