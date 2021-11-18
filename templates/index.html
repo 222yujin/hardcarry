@@ -9,9 +9,20 @@
 
         });
 
+        function get() {
+            $.ajax({
+                type: "GET",
+                url: "/result",
+                data: {"result_array": "1_0_1_1_1_1_1_1_1_1_1_1"},
+                success: function (response) {
+                    if (response["isSuccess"] == "success") {
+                            console.log(response)
+                    }
+                }
+            })
+        }
 
         function post() {
-
             $.ajax({
                 type: "POST",
                 url: "/result",
@@ -69,7 +80,8 @@ aws test
         <p>12번 질문</p>
         <label><input type="radio" name="q12" value="1" checked> 예</label>
         <label><input type="radio" name="q12" value="0"> 아니오</label>
-        <p><button onclick="post()">제출</button><input type="reset" value="Reset"></p>
+        <p><button onclick="post()">post</button><button onclick="get()">get</button>
+                <input type="reset" value="Reset"></p>
 
 
 </div>
