@@ -11,16 +11,11 @@
 
 
         function post() {
-            let result_array=[];
-            for (let i = 1; i <= 12; i++) {
-                let data = $('input[name=q'+i+']:checked').val();
-                result_array[i-1]=data;
-            }
-            console.log(result_array)
+
             $.ajax({
                 type: "POST",
                 url: "/result",
-                data: {"result_array":result_array},
+                data: {"result_array": "1_0_1_1_1_1_1_1_1_1_1_1"},
                 success: function (response) {
                     if (response["isSuccess"] == "success") {
                             console.log(response)

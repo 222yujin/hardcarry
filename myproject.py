@@ -21,7 +21,7 @@ def test_result():
     result_score = request.json['result_array']
     print(result_score)
     result_score = result_score.split('_')
-
+    print(result_score)
     result_type = 0
 
     if result_score[3] == 1 or (result_score[4] == 1 and result_score[5] == 1):
