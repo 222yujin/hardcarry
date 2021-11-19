@@ -20,14 +20,14 @@ def home():
 def test_result_get():
     result_score = request.args.get('result_array')
     result_score = result_score.split('_')
-    result_type = 0
 
+    result_type = 1
     if result_score[3] == '0' or (result_score[4] == '0' and result_score[5] == '0'):
         result_type = 2
-        if result_score[6] == '0' or (result_score[7] == '1' and result_score[8] == '0'):
-            result_type = 3
-            if result_score[9] == '0' or (result_score[10] == '0' and result_score[11] == '1'):
-                result_type = 4
+    if result_score[6] == '0' or (result_score[7] == '1' and result_score[8] == '0'):
+        result_type = 3
+    if result_score[9] == '0' or  result_score[11] == '1':
+        result_type = 4
     else:
         result_type = 1
 
